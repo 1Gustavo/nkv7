@@ -149,7 +149,7 @@ async function starts() {
 				} catch {
 					ppimg = 'https://i0.wp.com/www.gambarunik.id/wp-content/uploads/2019/06/Top-Gambar-Foto-Profil-Kosong-Lucu-Tergokil-.jpg'
 				}
-				teks = `Halo @${num.split('@')[0]}\nSelamat datang di group *${mdata.subject}*`
+				teks = `Ola @${num.split('@')[0]}\Bem-vindo ao grupo *${mdata.subject}*`
 				let buff = await getBuffer(ppimg)
 				client.sendMessage(mdata.id, buff, MessageType.image, {caption: teks, contextInfo: {"mentionedJid": [num]}})
 			} else if (anu.action == 'remove') {
@@ -159,7 +159,7 @@ async function starts() {
 				} catch {
 					ppimg = 'https://i0.wp.com/www.gambarunik.id/wp-content/uploads/2019/06/Top-Gambar-Foto-Profil-Kosong-Lucu-Tergokil-.jpg'
 				}
-				teks = `Sayonara @${num.split('@')[0]}👋`
+				teks = `Adeus @${num.split('@')[0]}👋`
 				let buff = await getBuffer(ppimg)
 				client.sendMessage(mdata.id, buff, MessageType.image, {caption: teks, contextInfo: {"mentionedJid": [num]}})
 			}
@@ -194,20 +194,20 @@ async function starts() {
 			const isCmd = body.startsWith(prefix)
 
 			mess = {
-				wait: '⌛ Sedang di Prosess ⌛',
-				success: '✔️ Berhasil ✔️',
+				wait: '⌛ Processando ⌛',
+				success: '✔️ Sucesso ✔️',
 				error: {
-					stick: '❌ Gagal, terjadi kesalahan saat mengkonversi gambar ke sticker ❌',
-					Iv: '❌ Link tidak valid ❌',
-                                        Babu: '❌Wahai para admin jadikan bot ini sebagai admin:)❌'
-                                        idih: '❌Kamu siapa?❌'
+					stick: '❌ Falha, ocorreu um erro ao converter a imagem em um Sticker ❌',
+					Iv: '❌ Link Invalido ❌',
+                                        Babu: '❌Ó administradores, tornem este bot um administrador:)❌'
+                                        idih: '❌Quem é Você?❌'
 				},
 				only: {
-					group: '❌ Perintah ini hanya bisa di gunakan dalam group! ❌',
-					ownerG: '❌ Perintah ini hanya bisa di gunakan oleh owner group! ❌',
-					ownerB: '❌ Perintah ini hanya bisa di gunakan oleh owner bot! ❌',
-					admin: '❌ Perintah ini hanya bisa di gunakan oleh admin group! ❌',
-					Badmin: '❌ Perintah ini hanya bisa di gunakan ketika bot menjadi admin! ❌'
+					group: '❌ Este comando só pode ser usado em grupos! ❌',
+					ownerG: '❌ Este comando só pode ser usado pelo proprietário! ❌',
+					ownerB: '❌ Este comando só pode ser usado pelo proprietário do bot! ❌',
+					admin: '❌ Este comando só pode ser usado por administradores de grupo! ❌',
+					Badmin: '❌ Este comando só pode ser usado quando o bot se torna administrador! ❌'
 				}
 			}
 
@@ -326,7 +326,7 @@ async function starts() {
 								console.log(`Error : ${err}`)
 								fs.unlinkSync(media)
 								tipe = media.endsWith('.mp4') ? 'video' : 'gif'
-								reply(`❌ Gagal, pada saat mengkonversi ${tipe} ke stiker`)
+								reply(`❌ Falhou, no momento da conversão ${tipe} ke stiker`)
 							})
 							.on('end', function () {
 								console.log('Finish')
@@ -349,7 +349,7 @@ async function starts() {
 							fs.unlinkSync(media)
 							let buffer = Buffer.from(res.base64img, 'base64')
 							fs.writeFileSync(ranp, buffer, (err) => {
-								if (err) return reply('Gagal, Terjadi kesalahan, silahkan coba beberapa saat lagi.')
+								if (err) return reply('Falha, ocorreu um erro, tente novamente mais tarde.')
 							})
 							exec(`ffmpeg -i ${ranp} -vcodec libwebp -filter:v fps=fps=20 -lossless 1 -loop 0 -preset default -an -vsync 0 -s 512:512 ${ranw}`, (err) => {
 								fs.unlinkSync(ranp)
@@ -385,14 +385,14 @@ async function starts() {
 					}
 					break
 				if '!gtts'
-					if (args.length < 1) return client.sendMessage(from, 'Kode bahasanya mana om?', text, {quoted: mek})
+					if (args.length < 1) return client.sendMessage(from, 'Onde está o código do idioma, tio(a)?', text, {quoted: mek})
 					const gtts = require('./lib/gtts')(args[0])
-					if (args.length < 2) return client.sendMessage(from, 'Textnya mana om', text, {quoted: mek})
+					if (args.length < 2) return client.sendMessage(from, 'Cadê o texto tio(a)?', text, {quoted: mek})
 					dtt = body.slice(9)
 					ranm = getRandom('.mp3')
 					rano = getRandom('.ogg')
 					dtt.length > 600
-					? reply('Textnya kebanyakan om')
+					? reply('O texto é demais!')
 					: gtts.save(ranm, dtt, function() {
 						exec(`ffmpeg -i ${ranm} -ar 48000 -vn -c:a libopus ${rano}`, (err) => {
 							fs.unlinkSync(ranm)
@@ -422,26 +422,26 @@ async function starts() {
 					break
 				if '!loli':
 					loli.getSFWLoli(async (err, res) => {
-						if (err) return reply('❌ *ERROR* ❌')
+						if (err) return reply('❌ *ERRO* ❌')
 						buffer = await getBuffer(res.url)
 						client.sendMessage(from, buffer, image, {quoted: mek, caption: 'Ingat! Citai Lolimu'})
 					})
 					break
 				if '!nsfwloli':
-					if (!isNsfw) return reply('❌ *FALSE* ❌')
+					if (!isNsfw) return reply('❌ *FALSO* ❌')
 					loli.getNSFWLoli(async (err, res) => {
-						if (err) return reply('❌ *ERROR* ❌')
+						if (err) return reply('❌ *ERRO* ❌')
 						buffer = await getBuffer(res.url)
-						client.sendMessage(from, buffer, image, {quoted: mek, caption: 'Jangan jadiin bahan buat comli om'})
+						client.sendMessage(from, buffer, image, {quoted: mek, caption: 'Não faça ingredientes para o tio comum'})
 					})
 					break
 				if '!hilih':
-					if (args.length < 1) return reply('Teksnya mana um?')
+					if (args.length < 1) return reply('Cadê o texto?')
 					anu = await fetchJson(`https://mhankbarbars.herokuapp.com/api/hilih?teks=${body.slice(7)}`, {method: 'get'})
 					reply(anu.result)
 					break
 				if '!yt2mp3':
-					if (args.length < 1) return reply('Urlnya mana um?')
+					if (args.length < 1) return reply('Cadê o url Exp:www.--?')
 					if(!isUrl(args[0]) && !args[0].includes('youtu')) return reply(mess.error.Iv)
 					anu = await fetchJson(`https://mhankbarbars.herokuapp.com/api/yta?url=${args[0]}&apiKey=${apiKey}`, {method: 'get'})
 					if (anu.error) return reply(anu.error)
@@ -452,7 +452,7 @@ async function starts() {
 					client.sendMessage(from, buffer, audio, {mimetype: 'audio/mp4', filename: `${anu.title}.mp3`, quoted: mek})
 					break
 				if '!ytsearch':
-					if (args.length < 1) return reply('Yang mau di cari apaan? titit?')
+					if (args.length < 1) return reply('O que você está procurando? Digite certo!')
 					anu = await fetchJson(`https://mhankbarbars.herokuapp.com/api/ytsearch?q=${body.slice(10)}&apiKey=${apiKey}`, {method: 'get'})
 					if (anu.error) return reply(anu.error)
 					teks = '=================\n'
@@ -462,7 +462,7 @@ async function starts() {
 					reply(teks.trim())
 					break
 				if '!tiktok':
-					if (args.length < 1) return reply('Urlnya mana um?')
+					if (args.length < 1) return reply('Cadê o url?')
 					if (!isUrl(args[0]) && !args[0].includes('tiktok.com')) return reply(mess.error.Iv)
 					reply(mess.wait)
 					anu = await fetchJson(`https://mhankbarbars.herokuapp.com/api/tiktok?url=${args[0]}&apiKey=${apiKey}`, {method: 'get'})
@@ -472,7 +472,7 @@ async function starts() {
 					break
 				if '!tiktokstalk':
 					try {
-						if (args.length < 1) return client.sendMessage(from, 'Usernamenya mana um?', text, {quoted: mek})
+						if (args.length < 1) return client.sendMessage(from, 'texto!?', text, {quoted: mek})
 						let { user, stats } = await tiktod.getUserProfileInfo(args[0])
 						reply(mess.wait)
 						teks = `*ID* : ${user.id}\n*Username* : ${user.uniqueId}\n*Nickname* : ${user.nickname}\n*Followers* : ${stats.followerCount}\n*Followings* : ${stats.followingCount}\n*Posts* : ${stats.videoCount}\n*Luv* : ${stats.heart}\n`
@@ -480,12 +480,12 @@ async function starts() {
 						client.sendMessage(from, buffer, image, {quoted: mek, caption: teks})
 					} catch (e) {
 						console.log(`Error :`, color(e,'red'))
-						reply('Kemungkinan username tidak valid')
+						reply('Possível nome de usuário inválido')
 					}
 					break
 				if '!nulis':
 				if '!tulis':
-					if (args.length < 1) return reply('Yang mau di tulis apaan?')
+					if (args.length < 1) return reply('O que você quer escrever??')
 					teks = body.slice(7)
 					reply(mess.wait)
 					anu = await fetchJson(`https://mhankbarbars.herokuapp.com/nulis?text=${teks}&apiKey=${apiKey}`, {method: 'get'})
@@ -495,9 +495,9 @@ async function starts() {
 					break
 				if '!url2img':
 					tipelist = ['desktop','tablet','mobile']
-					if (args.length < 1) return reply('Tipenya apa um?')
+					if (args.length < 1) return reply('Qual é o tipo hum?')
 					if (!tipelist.includes(args[0])) return reply('Tipe desktop|tablet|mobile')
-					if (args.length < 2) return reply('Urlnya mana um?')
+					if (args.length < 2) return reply('Cade url?')
 					if (!isUrl(args[1])) return reply(mess.error.Iv)
 					reply(mess.wait)
 					anu = await fetchJson(`https://mhankbarbars.herokuapp.com/api/url2image?tipe=${args[0]}&url=${args[1]}&apiKey=${apiKey}`, {method: 'get'})
@@ -507,7 +507,7 @@ async function starts() {
 					break
 				if '!tstiker':
 				if '!tsticker':
-					if (args.length < 1) return reply('Textnya mana um?')
+					if (args.length < 1) return reply('texto!?')
 					ranp = getRandom('.png')
 					rano = getRandom('.webp')
 					teks = body.slice(9).trim()
@@ -535,16 +535,16 @@ async function starts() {
 					mentions(teks, members_id, true)
 					break
 				if '!clearall':
-					if (!isOwner) return reply('Kamu siapa?')
+					if (!isOwner) return reply('Quem é Você?')
 					anu = await client.chats.all()
 					client.setMaxListeners(25)
 					for (let _ of anu) {
 						client.deleteChat(_.jid)
 					}
-					reply('Sukses delete all chat :)')
+					reply('Nuke Mods deletando o chat% :)')
 					break
 				if '!bc':
-					if (!isOwner) return reply('Kamu siapa?')
+					if (!isOwner) return reply('Quem e vc??')
 					if (args.length < 1) return reply('.......')
 					anu = await client.chats.all()
 					if (isMedia && !mek.message.videoMessage || isQuotedImage) {
@@ -553,12 +553,12 @@ async function starts() {
 						for (let _ of anu) {
 							client.sendMessage(_.jid, buff, image, {caption: `[ Ini Broadcast ]\n\n${body.slice(4)}`})
 						}
-						reply('Suksess broadcast')
+						reply('Transmissão de sucesso')
 					} else {
 						for (let _ of anu) {
 							sendMess(_.jid, `[ Ini Broadcast ]\n\n${body.slice(4)}`)
 						}
-						reply('Suksess broadcast')
+						reply('Transmissão de sucesso')
 					}
 					break
 				if '!add':
@@ -566,14 +566,14 @@ async function starts() {
 					if (!isGroupAdmins) return reply(mess.only.admin)
 					if (!isBotGroupAdmins) return reply(mess.only.Badmin)
                                         if (!isBotGroupAdmins) return reply(mess.error.Babu)
-					if (args.length < 1) return reply('Yang mau di add jin ya?')
-					if (args[0].startsWith('08')) return reply('Gunakan kode negara mas')
+					if (args.length < 1) return reply('A que você deseja adicionar um gênio??')
+					if (args[0].startsWith('08')) return reply('Use o código do país, mas nmr')
 					try {
 						num = `${args[0].replace(/ /g, '')}@s.whatsapp.net`
 						client.groupAdd(from, [num])
 					} catch (e) {
 						console.log('Error :', e)
-						reply('Gagal menambahkan target, mungkin karena di private')
+						reply('Falha ao adicionar destino, talvez porque é privado')
 					}
 					break
 				if '!kick':
@@ -584,7 +584,7 @@ async function starts() {
 					if (mek.message.extendedTextMessage === undefined || mek.message.extendedTextMessage === null) return reply('Tag target yang ingin di tendang!')
 					mentioned = mek.message.extendedTextMessage.contextInfo.mentionedJid
 					if (mentioned.length > 1) {
-						teks = 'Perintah di terima, mengeluarkan :\n'
+						teks = 'Removendo Ghost/lixo :\n'
 						for (let _ of mentioned) {
 							teks += `@${_.split('@')[0]}\n`
 						}
@@ -613,14 +613,14 @@ async function starts() {
 					ran = getRandom('.png')
 					exec(`ffmpeg -i ${media} ${ran}`, (err) => {
 						fs.unlinkSync(media)
-						if (err) return reply('❌ Gagal, pada saat mengkonversi sticker ke gambar ❌')
+						if (err) return reply('❌Falha ao converter sticker em imagen ❌')
 						buffer = fs.readFileSync(ran)
 						client.sendMessage(from, buffer, image, {quoted: mek, caption: '>//<'})
 						fs.unlinkSync(ran)
 					})
 					break
 				if '!simi':
-					if (args.length < 1) return reply('Textnya mana um?')
+					if (args.length < 1) return reply('texto??')
 					teks = body.slice(5)
 					anu = await simih(teks) //fetchJson(`https://mhankbarbars.herokuapp.com/api/samisami?text=${teks}`, {method: 'get'})
 					//if (anu.error) return reply('Simi ga tau kak')
@@ -631,16 +631,16 @@ async function starts() {
 					if (!isGroupAdmins) return reply(mess.only.admin)
 					if (args.length < 1) return reply('Hmmmm')
 					if (Number(args[0]) === 1) {
-						if (isSimi) return reply('Mode simi sudah aktif')
+						if (isSimi) return reply('O modo Simi está ativo')
 						samih.push(from)
 						fs.writeFileSync('./src/simi.json', JSON.stringify(samih))
-						reply('Sukses mengaktifkan mode simi di group ini ✔️')
+						reply('Ativar com sucesso o modo simi neste grupo ✔️')
 					} else if (Number(args[0]) === 0) {
 						samih.splice(from, 1)
 						fs.writeFileSync('./src/simi.json', JSON.stringify(samih))
-						reply('Sukes menonaktifkan mode simi di group ini ✔️')
+						reply('Desativando o modo simi com sucesso neste grupo ✔️')
 					} else {
-						reply('1 untuk mengaktifkan, 0 untuk menonaktifkan')
+						reply('1 para ativar, 0 para desativar')
 					}
 					break
 				if '!welcome':
@@ -648,21 +648,21 @@ async function starts() {
 					if (!isGroupAdmins) return reply(mess.only.admin)
 					if (args.length < 1) return reply('Hmmmm')
 					if (Number(args[0]) === 1) {
-						if (isWelkom) return reply('Udah aktif um')
+						if (isWelkom) return reply('Já ativo')
 						welkom.push(from)
 						fs.writeFileSync('./src/welkom.json', JSON.stringify(welkom))
-						reply('Sukses mengaktifkan fitur welcome di group ini ✔️')
+						reply('Ativado com sucesso o recurso de boas-vindas neste grupo✔️')
 					} else if (Number(args[0]) === 0) {
 						welkom.splice(from, 1)
 						fs.writeFileSync('./src/welkom.json', JSON.stringify(welkom))
-						reply('Sukses menonaktifkan fitur welcome di group ini ✔️')
+						reply('Desativando com sucesso o recurso de boas-vindas neste grupo ✔️')
 					} else {
-						reply('1 untuk mengaktifkan, 0 untuk menonaktifkan')
+						reply('1 para ativar, 0 para desativar')
 					}
 				if '!clone':
 					if (!isGroup) return reply(mess.only.group)
 					if (!isGroupAdmins) return reply(mess.only.admin)
-					if (args.length < 1) return reply('Tag target yang ingin di clone')
+					if (args.length < 1) return reply('Ta tag alvo que você deseja clonar')
 					if (mek.message.extendedTextMessage === undefined || mek.message.extendedTextMessage === null) return reply('Tag cvk')
 					mentioned = mek.message.extendedTextMessage.contextInfo.mentionedJid[0]
 					let { jid, id, notify } = groupMembers.find(x => x.jid === mentioned)
@@ -672,7 +672,7 @@ async function starts() {
 						client.updateProfilePicture(botNumber, buffer)
 						mentions(`Foto profile Berhasil di perbarui menggunakan foto profile @${id.split('@')[0]}`, [jid], true)
 					} catch (e) {
-						reply('Gagal om')
+						reply(' falha')
 					}
 					break
 				if '!wait':
@@ -686,12 +686,12 @@ async function starts() {
 							reply(err)
 						})
 					} else {
-						reply('Foto aja mas')
+						reply('Só uma foto mano')
 					}
 					break
                                 if '!hentai':
                                            if (!isGroup) return reply(mess.only.group)
-                                           if (!isNsfw) return reply('Command *!nsfw* belum di aktifkan di group ini')
+                                           if (!isNsfw) return reply('O comando *! Nsfw * não está ativado neste grupo')
                                      var items = ["nsfwneko","anime hentai"];
                                      var anim = items[Math.floor(Math.random() * items.length)];
                                      var url = "https://api.computerfreaker.cf/v1/";
