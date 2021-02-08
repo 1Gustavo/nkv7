@@ -200,7 +200,7 @@ async function starts() {
 					stick: '❌ Falha, ocorreu um erro ao converter a imagem em um Sticker ❌',
 					Iv: '❌ Link Invalido ❌',
                                         Babu: '❌Ó administradores, tornem este bot um administrador:)❌'
-                                        idih: '❌Quem é Você?❌'
+                                         idih: '❌Kamu siapa?❌'
 				},
 				only: {
 					group: '❌ Este comando só pode ser usado em grupos! ❌',
