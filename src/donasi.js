@@ -1,7 +1,7 @@
 const donasi = () => {
-	return `𝙅𝙖𝙫𝙯𝙡𝙮𝙣𝘽𝙤𝙩	
+	return `NKv𝘽𝙤𝙩	
 
-  Hi👋️
+  OI👋️
   
           *FITUR*
           
